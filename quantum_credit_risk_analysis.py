@@ -25,10 +25,12 @@ class AdvancedQuantumCreditRiskSystem:
         
         # Modeling parameters
         self.n_z = 2                # Qubits to discretize Z
-        self.z_max = 2              # Truncation range for Z [-z_max, z_max]
+        self.z_max = 2.0            # Truncation range for Z [-z_max, z_max]
         
+        # Corrected signature for your version: 
+        # (n_normal, normal_max_value, p_zeros, rhos)
         self.uncertainty_model = GaussianConditionalIndependenceModel(
-            n_assets, self.n_z, p_zeros, rhos, self.z_max
+            self.n_z, self.z_max, p_zeros, rhos
         )
 
     def build_cdf_circuit(self, x_threshold):
